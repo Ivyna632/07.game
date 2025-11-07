@@ -1,25 +1,223 @@
 /* style.css */
 
-/* ... (O restante do seu CSS, incluindo o container#quiz-final de min-height) ... */
+/* --- Variáveis de Cor (Tons de Azul Escuro para Fundo) --- */
+:root {
+    --roxo-fundo: #000033; /* Azul marinho muito escuro */
+    --azul-marinho-fundo: #000066; /* Azul marinho escuro */
+    --laranja-acento: #FF8C00;
+    --rosa-acento: #FF69B4;
+    --roxo-botao: #4B0082;
+    --envelope-cor: #FFEBCD;
+    --envelope-borda: #CD853F;
+    --aviso-vermelho: #DC143C;
+}
 
-/* ------------------------------------- */
+/* --- Estilo Global e Fundo --- */
+body {
+    font-family: 'Arial', sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--roxo-fundo), var(--azul-marinho-fundo));
+    transition: background 1s ease-in-out; 
+    overflow: hidden;
+}
+
+/* --- Container Centralizado e Animação de Página --- */
+.container {
+    text-align: center;
+    padding: 20px;
+    max-width: 90%;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-exit {
+    animation: fadeOut 0.5s ease-in forwards;
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateY(-20px); }
+}
+
+/* --- Estilo de Texto --- */
+h1, h2, p {
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Estilo de Botões/Opções --- */
+.button, .option-box {
+    background-color: var(--roxo-botao);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease, left 0.5s ease-out, top 0.5s ease-out; /* Adicionado left e top para movimento suave */
+    display: block; 
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover, .option-box:hover {
+    background-color: #6A0DAD; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Estilo para Avisos (OBS) --- */
+.aviso {
+    color: var(--aviso-vermelho);
+    font-size: 0.8em;
+    margin-top: 5px;
+    font-weight: bold;
+    text-shadow: none;
+}
+
+/* --------------------------------- */
+/* --- PÁGINA 1: ANIMAÇÃO DA VELA --- */
+/* --------------------------------- */
+.vela-container { margin-top: 50px; }
+.vela {
+    width: 60px;
+    height: 150px;
+    background-color: var(--envelope-cor);
+    border: 3px solid var(--envelope-borda);
+    border-radius: 5px;
+    margin: 0 auto 10px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+.pavio {
+    width: 2px;
+    height: 10px;
+    background-color: #333;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.fogo {
+    width: 20px;
+    height: 30px;
+    background: radial-gradient(circle at 50% 0, var(--rosa-acento) 0%, var(--laranja-acento) 70%, transparent 100%);
+    border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fire-flicker 0.2s infinite alternate;
+    box-shadow: 0 0 15px var(--laranja-acento);
+    transform-origin: 50% 100%;
+}
+@keyframes fire-flicker {
+    0% { transform: translateX(-50%) scale(1, 1); opacity: 1; }
+    100% { transform: translateX(-50%) scale(0.95, 1.05); opacity: 0.9; }
+}
+.smoke {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 50%;
+    opacity: 0; 
+    transform: translateX(-50%);
+    z-index: -1;
+}
+.vela-apagando .fogo { animation: fire-out 0.3s forwards; }
+@keyframes fire-out {
+    to { transform: translateX(-50%) scale(0); opacity: 0; }
+}
+.show-smoke .smoke { animation: smoke-rise 2s ease-out forwards; }
+@keyframes smoke-rise {
+    0% { opacity: 1; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.8; width: 30px; height: 30px; top: -100px; }
+    100% { opacity: 0; width: 40px; height: 40px; top: -200px; transform: translateX(-50%) scale(1.5); }
+}
+
+/* ----------------------------------- */
+/* --- PÁGINA 2: ANIMAÇÃO ENVELOPE --- */
+/* ----------------------------------- */
+.envelope-wrapper {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    margin: 50px auto 0;
+    cursor: pointer;
+    perspective: 1000px;
+}
+.envelope {
+    width: 100%;
+    height: 100%;
+    background-color: var(--envelope-cor);
+    border: 3px solid var(--envelope-borda);
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 1s ease-in-out;
+    transform-style: preserve-3d;
+}
+.selo-coracao {
+    width: 50px;
+    height: 50px;
+    background-color: var(--aviso-vermelho);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    border-radius: 50% 50% 0 50%;
+    transition: transform 0.5s ease-out;
+}
+.selo-coracao::before, .selo-coracao::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--aviso-vermelho);
+    border-radius: 50%;
+}
+.selo-coracao::before { top: -50%; left: 0; }
+.selo-coracao::after { top: 0; left: 50%; }
+.envelope-open { transform: rotateX(15deg) scale(0.1); opacity: 0; }
+.caixa-carta {
+    background-color: var(--envelope-cor);
+    color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--envelope-borda);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* ----------------------------------- */
 /* --- PÁGINA 6: BOTÃO FUGITIVO --- */
-/* ------------------------------------- */
+/* ----------------------------------- */
 
 /* O container precisa ser 'position: relative' para que o botão 'absolute' se mova dentro dele */
 .container#quiz-final {
     position: relative; 
-    min-height: 400px; /* Garante espaço suficiente para o botão se movimentar */
-    display: block; /* Garante que o container use a largura total */
+    min-height: 400px; 
+    display: block; 
 }
 
 /* Estilo do botão fugitivo */
 #btn-davi.fugitive-button {
-    /* Torna o botão livre para ser posicionado */
     position: absolute; 
-    /* Adiciona transição para que o movimento seja suave (não um 'teletransporte') */
     transition: all 0.5s ease-out; 
-    /* Garante que o botão fugitivo fique por cima de tudo */
     z-index: 10; 
 }
 
@@ -27,6 +225,39 @@
 #btn-ivyna {
     position: relative;
     z-index: 5;
-    /* Ajuste o 'margin-top' ou o 'display' se precisar que ele fique em uma linha própria */
-    margin-top: 150px; /* Adiciona um espaço para que o botão fugitivo possa se mover por cima */
+    margin-top: 150px; 
+}
+
+
+/* ------------------------------------- */
+/* --- PÁGINA FINAL: CORAÇÃO PULSANTE --- */
+/* ------------------------------------- */
+
+.heart-pulse-container { margin-top: 50px; }
+.heart {
+    position: relative;
+    width: 100px;
+    height: 90px;
+    margin: 0 auto;
+    animation: pulse 1s infinite alternate;
+}
+.heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: var(--rosa-acento);
+    border-radius: 50% 50% 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+    box-shadow: 0 0 20px var(--rosa-acento);
+}
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
 }
