@@ -1,28 +1,24 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Pag1 - Assopre a vela</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assopre a Vela</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="fade-in">
-<main class="center-screen page" id="page1">
-<div class="container">
-<h1 class="title">Assopre a vela</h1>
-<div class="scene">
-<div class="candle">
-<div class="wax"></div>
-<div class="flame"></div>
-<div class="smoke" aria-hidden="true"></div>
-</div>
-</div>
-<div class="counter" id="counter">3</div>
-</div>
-</main>
+<body>
+    <div class="container">
+        <h1>Assopre a Vela em:</h1>
+        <h2 id="vela-countdown">3</h2>
 
-
-<audio id="bgm" loop src="music.mp3" preload="auto"></audio>
-<script src="script.js"></script>
+        <div class="vela-container" id="vela-element">
+            <div class="vela">
+                <div class="pavio"></div>
+                <div class="fogo"></div>
+            </div>
+            <div class="smoke"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

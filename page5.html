@@ -1,25 +1,28 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Pag5 - Pergunta 2</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Pergunta 2</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="fade-in">
-<main class="center-screen page" id="page5">
-<div class="container">
-<div class="question">E você, ama a sua namorada?</div>
-<div class="choices">
-<button class="btn primary choice">mais que tudo no mundo</button>
-<div class="choice-col">
-<button class="btn primary choice" id="choice-unknown">ainda não sei</button>
-<div class="obs small red">(sujeito a violência se essa opção for marcada)</div>
-</div>
-</div>
-</div>
-</main>
-<audio id="bgm" loop src="music.mp3" preload="auto"></audio>
-<script src="script.js"></script>
+<body>
+    <div class="container">
+        <h3>Pergunta 2: E você, ama a sua namorada?</h3>
+        
+        <button class="option-box" onclick="answerAndNavigate('pagina6.html')">
+            MAIS QUE TUDO NO MUNDO
+        </button>
+        
+        <div style="position: relative; display: inline-block;">
+            <button class="option-box" onclick="answerAndNavigate('pagina6.html')">
+                Ainda não sei
+            </button>
+            <p class="aviso" style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); white-space: nowrap;">
+                (Sujeito a violência se essa opção for marcada)
+            </p>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

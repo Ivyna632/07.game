@@ -1,26 +1,28 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Pag6 - Quem ama mais?</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Pergunta Final</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="fade-in">
-<main class="center-screen page" id="page6">
-<div class="container">
-<div class="question">Agora... quem que ama mais o outro nesse relacionamento?</div>
-<div class="choices">
-<button class="btn primary choice" id="btn-ivyna">ivyna</button>
-<div class="choice-col">
-<button class="btn primary choice" id="btn-davi">davi</button>
-<button class="btn secondary" id="btn-fugir">fugir</button>
-</div>
-</div>
-<div class="obs small red corner">aceita que dói menos e clica em ivyna vai</div>
-</div>
-</main>
-<audio id="bgm" loop src="music.mp3" preload="auto"></audio>
-<script src="script.js"></script>
+<body>
+    <div class="container" id="quiz-final">
+        <h3>Agora... quem que ama mais o outro nesse relacionamento?</h3>
+        
+        <button id="btn-ivyna" class="option-box">
+            IVYNA
+        </button>
+        
+        <div style="position: relative; display: inline-block;">
+            <button id="btn-davi" class="option-box">
+                DAVI
+            </button>
+            <p class="aviso" style="position: absolute; bottom: -25px; right: -150px; white-space: nowrap;">
+                Aceita que dói menos e clica em IVYNA vai
+            </p>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

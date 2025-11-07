@@ -1,148 +1,105 @@
-// script.js — Mini Jogo de Aniversário 💜
-// Funções principais: contador da vela, animações, transições e música contínua
+/* script.js */
 
-(function () {
-  // Iniciar música quando o usuário interagir (requerido por navegadores)
-  function startBgm() {
-    const audio = document.getElementById("bgm");
-    if (!audio) return;
-    audio.volume = 0.45;
-    const play = audio.play();
-    if (play && play.catch) {
-      play.catch(() => {
-        // Bloqueado até o primeiro clique/toque
-      });
+// Função de Transição Profissional
+function transitionToPage(url) {
+    const body = document.body;
+    // Adiciona a classe de saída
+    body.classList.add('page-exit');
+
+    // Espera a animação de saída terminar (0.5s)
+    setTimeout(() => {
+        window.location.href = url;
+    }, 500);
+}
+
+// ------------------------------------
+// Lógica Específica da Página 1 (Vela)
+// ------------------------------------
+if (document.getElementById('vela-countdown')) {
+    let count = 3;
+    const counterElement = document.getElementById('vela-countdown');
+    const vela = document.getElementById('vela-element');
+
+    function startCountdown() {
+        counterElement.textContent = count;
+        
+        const interval = setInterval(() => {
+            count--;
+            counterElement.textContent = count;
+            
+            if (count === 0) {
+                clearInterval(interval);
+                // Inicia a animação da vela se apagando
+                vela.classList.add('vela-apagando');
+                document.body.classList.add('show-smoke'); // Adiciona fumaça
+                
+                // Remove o fogo do DOM para garantir o fim visual
+                setTimeout(() => {
+                    const fogo = document.querySelector('.fogo');
+                    if (fogo) fogo.remove();
+                }, 300);
+
+                // Transição suave para a próxima página após a animação
+                setTimeout(() => {
+                    transitionToPage('pagina2.html');
+                }, 1500); // 1.5s após a vela apagar
+            }
+        }, 1000);
     }
-  }
+    
+    // Inicia o contador assim que a página carregar
+    window.onload = startCountdown;
+}
 
-  document.addEventListener("click", startBgm, { once: true });
-  document.addEventListener("touchstart", startBgm, { once: true });
 
-  const path = location.pathname.split("/").pop() || "index.html";
-
-  // ================================
-  // 🔥 Página 1 - Assopre a vela
-  // ================================
-  if (path === "index.html" || path === "") {
-    let counter = document.getElementById("counter");
-    let flame = document.querySelector(".flame");
-    let smoke = document.querySelector(".smoke");
-    let n = 3;
-
-    const tick = setInterval(() => {
-      n--;
-      if (counter) counter.textContent = n > 0 ? n : "";
-      if (n <= 0) {
-        clearInterval(tick);
-
-        // Apagar a vela — sumir chama, aumentar fumaça
-        if (flame) flame.style.opacity = 0;
-        if (smoke) {
-          smoke.style.opacity = 0.9;
-          smoke.style.animationDuration = "2s";
-        }
-
-        // Transição para a próxima página
-        setTimeout(() => (location.href = "pag2.html"), 1200);
-      }
-    }, 1000);
-  }
-
-  // ================================
-  // 💌 Página 2 - Envelope
-  // ================================
-  if (path === "pag2.html") {
-    const envelope = document.getElementById("envelope");
-    const letterBox = document.getElementById("letterBox");
-    const enterBtn = document.getElementById("enterLetter");
-
-    if (envelope) {
-      envelope.addEventListener("click", () => {
-        envelope.classList.add("open");
+// ------------------------------------
+// Lógica Específica da Página 2 (Envelope)
+// ------------------------------------
+if (document.getElementById('envelope-trigger')) {
+    document.getElementById('envelope-trigger').addEventListener('click', function() {
+        const envelope = this.querySelector('.envelope');
+        
+        // Inicia a animação "entrando" no envelope
+        envelope.classList.add('envelope-open');
+        
+        // Transição para a próxima página após a animação (1s)
         setTimeout(() => {
-          envelope.classList.add("move-up");
-        }, 400);
-        setTimeout(() => {
-          if (letterBox) letterBox.classList.remove("hidden");
-        }, 900);
-      });
-    }
+            transitionToPage('pagina3.html');
+        }, 1000);
+    });
+}
 
-    if (enterBtn) {
-      enterBtn.addEventListener("click", () => {
-        enterBtn.disabled = true;
-        setTimeout(() => (location.href = "pag3.html"), 700);
-      });
-    }
-  }
+// ------------------------------------
+// Lógica Específica do Quiz (Paginas 4, 5, 6)
+// ------------------------------------
 
-  // ================================
-  // 🎉 Página 3 - Convite para o quiz
-  // ================================
-  if (path === "pag3.html") {
-    const btn = document.getElementById("toPag4");
-    if (btn) btn.addEventListener("click", () => (location.href = "pag4.html"));
-  }
+// Função universal de navegação no quiz
+function answerAndNavigate(url) {
+    transitionToPage(url);
+}
 
-  // ================================
-  // 💞 Página 4 - Primeira pergunta
-  // ================================
-  if (path === "pag4.html") {
-    document.querySelectorAll(".choice").forEach((b) =>
-      b.addEventListener("click", () => (location.href = "pag5.html"))
-    );
-  }
+// Lógica para a Página 6 (Botão de Fuga)
+if (document.getElementById('quiz-final')) {
+    const btnIvyna = document.getElementById('btn-ivyna');
+    const btnDavi = document.getElementById('btn-davi');
+    const btnFugir = document.getElementById('btn-fugir');
 
-  // ================================
-  // ❤️ Página 5 - Segunda pergunta
-  // ================================
-  if (path === "pag5.html") {
-    document.querySelectorAll(".choice").forEach((b) =>
-      b.addEventListener("click", () => (location.href = "pag6.html"))
-    );
-  }
+    btnDavi.addEventListener('click', function() {
+        // Bloqueia o botão 'Davi' (que se transforma em 'Fugir')
+        this.textContent = 'FUGIR';
+        this.id = 'btn-fugir'; // Muda o ID para aplicar o estilo de bloqueio
+        this.classList.add('button-blocked'); 
+        this.style.backgroundColor = 'gray';
+        this.style.cursor = 'not-allowed';
+        this.style.pointerEvents = 'none'; // Impede o clique
+    });
 
-  // ================================
-  // 😄 Página 6 - Quem ama mais
-  // ================================
-  if (path === "pag6.html") {
-    const btnDavi = document.getElementById("btn-davi");
-    const btnFugir = document.getElementById("btn-fugir");
-    const btnIvyna = document.getElementById("btn-ivyna");
+    btnIvyna.addEventListener('click', function() {
+        // Resposta correta, navega para a página final
+        answerAndNavigate('pagina-final.html');
+    });
+}
 
-    if (btnDavi) {
-      btnDavi.addEventListener("click", () => {
-        // "Desabilitar" o botão fugir
-        if (btnFugir) {
-          btnFugir.disabled = true;
-          btnFugir.style.opacity = 0.35;
-          btnFugir.style.cursor = "not-allowed";
-        }
-
-        // Pequena animação de sacudir o botão “davi”
-        btnDavi.animate(
-          [
-            { transform: "translateX(0)" },
-            { transform: "translateX(8px)" },
-            { transform: "translateX(-8px)" },
-            { transform: "translateX(0)" },
-          ],
-          { duration: 420 }
-        );
-      });
-    }
-
-    if (btnIvyna) {
-      btnIvyna.addEventListener("click", () => {
-        setTimeout(() => (location.href = "final.html"), 500);
-      });
-    }
-  }
-
-  // ================================
-  // 💗 Página Final
-  // ================================
-  if (path === "final.html") {
-    // Nenhum controle especial necessário aqui
-  }
-})();
+// Adiciona as funções ao escopo global (para uso em onclick nos HTMLs)
+window.transitionToPage = transitionToPage;
+window.answerAndNavigate = answerAndNavigate;
