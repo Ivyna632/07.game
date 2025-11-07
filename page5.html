@@ -2,22 +2,26 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz 💭</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="fade-in">
-  <h2>E você, ama a sua namorada?</h2>
-  <button onclick="proximaPagina()">Mais que tudo no mundo 💖</button>
-  <button> Ainda não sei </button>
-  <p class="observacao">(sujeito a violência se essa opção for marcada 😅)</p>
+<body>
+  <div class="letter-box">
+    <h2>Você me ama?</h2>
+    <button class="option" onclick="window.location.href='pag6.html'">Sim 💜</button>
+    <button class="option impossible">Não 😅</button>
+    <p class="obs">Sujeito a violência emocional caso escolha errado 😈</p>
+  </div>
 
   <script>
-    const buttons = document.querySelectorAll("button");
-    buttons[1].addEventListener("click", () => alert("🩵 Resposta errada, tente de novo!"));
-    function proximaPagina() {
-      document.body.classList.add("fade-out");
-      setTimeout(() => window.location.href = "page6.html", 800);
-    }
+    // Botão "Não" foge do clique
+    const impossible = document.querySelector('.impossible');
+    impossible.addEventListener('mouseover', () => {
+      impossible.style.position = 'absolute';
+      impossible.style.left = Math.random() * 80 + '%';
+      impossible.style.top = Math.random() * 80 + '%';
+    });
   </script>
 </body>
 </html>

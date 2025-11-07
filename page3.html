@@ -2,19 +2,15 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Surpresa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta 💌</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="fade-in">
-  <h2>Espero que tenha gostado da cartinha 💖</h2>
-  <p>Vamos fazer um pequeno quiz agora?</p>
-  <button onclick="proximaPagina()">Começar</button>
+<body>
+  <div class="letter-box">
+    <p>Meu amor, você é o motivo de cada sorriso meu, a melhor parte dos meus dias 💖</p>
+  </div>
 
-  <script>
-    function proximaPagina() {
-      document.body.classList.add("fade-out");
-      setTimeout(() => window.location.href = "page4.html", 800);
-    }
-  </script>
+  <button class="next-btn" onclick="window.location.href='pag4.html'">Vamos fazer um pequeno quiz agora?</button>
 </body>
 </html>

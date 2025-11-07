@@ -2,18 +2,24 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Feliz Aniversário</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A carta 💌</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="fade-in">
+<body>
   <h1>Feliz aniversário, meu amor!</h1>
-  <p class="observacao">(Aperte o coração para abrir a carta 💌)</p>
-  <img src="envelope.png" id="envelope" alt="Envelope com selo de coração" style="cursor:pointer;">
-  
+  <p class="hint">Aperte o coração para abrir a carta</p>
+
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="heart"></div>
+  </div>
+
   <script>
-    document.getElementById("envelope").addEventListener("click", () => {
-      document.body.classList.add("fade-out");
-      setTimeout(() => window.location.href = "page3.html", 800);
+    const envelope = document.getElementById("envelope");
+    envelope.addEventListener("click", () => {
+      envelope.classList.add("open");
+      setTimeout(() => window.location.href = "pag3.html", 1500);
     });
   </script>
 </body>
