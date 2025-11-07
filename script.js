@@ -1,15 +1,32 @@
 /* script.js */
 
-// Função de Transição Profissional
-function transitionToPage(url) {
+// Caminho base do projeto no GitHub Pages. ESSENCIAL para subpastas.
+const GITHUB_BASE_PATH = "/07.game/";
+
+// Função de Transição Profissional (Corrigida para Subpastas)
+function transitionToPage(filename) {
     const body = document.body;
     body.classList.add('page-exit');
 
+    // Constrói a URL de destino: [ORIGEM] + [CAMINHO BASE] + [NOME DO ARQUIVO]
+    // Ex: https://ivyna632.github.io/07.game/pag4.html
+    let targetUrl = window.location.origin + GITHUB_BASE_PATH + filename;
+    
+    // Pequeno ajuste para garantir que não haja barras duplas (Ex: /07.game//pag4.html)
+    if (GITHUB_BASE_PATH.endsWith('/') && filename.startsWith('/')) {
+        targetUrl = targetUrl.replace('//', '/');
+    }
+
     setTimeout(() => {
-        // CORREÇÃO: Voltando para URL simples, confiando na tag <base>
-        window.location.href = url; 
+        window.location.href = targetUrl;
     }, 500);
 }
+
+// Função universal de navegação no quiz
+function answerAndNavigate(url) {
+    transitionToPage(url);
+}
+
 
 // ------------------------------------
 // Lógica Específica da Página 1 (Vela)
@@ -36,7 +53,7 @@ if (document.getElementById('vela-countdown')) {
                     if (fogo) fogo.remove();
                 }, 300);
 
-                // Navega para 'pag2.html'
+                // Navega para 'pag2.html' (URL simples)
                 setTimeout(() => {
                     transitionToPage('pag2.html');
                 }, 1500);
@@ -57,7 +74,7 @@ if (document.getElementById('envelope-trigger')) {
         
         envelope.classList.add('envelope-open');
         
-        // Navega para 'pag3.html'
+        // Navega para 'pag3.html' (URL simples)
         setTimeout(() => {
             transitionToPage('pag3.html');
         }, 1000);
@@ -65,16 +82,7 @@ if (document.getElementById('envelope-trigger')) {
 }
 
 // ------------------------------------
-// Lógica Específica do Quiz (Paginas 4, 5, 6)
-// ------------------------------------
-
-// Função universal de navegação no quiz
-function answerAndNavigate(url) {
-    transitionToPage(url);
-}
-
-// ------------------------------------
-// Lógica DEFINITIVA da Página 6 (Botão de Fuga)
+// Lógica da Página 6 (Botão de Fuga)
 // ------------------------------------
 if (document.getElementById('quiz-final')) {
     const btnIvyna = document.getElementById('btn-ivyna');
@@ -102,7 +110,7 @@ if (document.getElementById('quiz-final')) {
 
     // Lógica para a resposta correta (IVYNA)
     btnIvyna.addEventListener('click', function() {
-        // Navega para 'pag-final.html'
+        // Navega para 'pag-final.html' (URL simples)
         answerAndNavigate('pag-final.html');
     });
 }
