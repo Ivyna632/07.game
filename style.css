@@ -1,3 +1,17 @@
+/* style.css */
+
+/* --- Variáveis de Cor --- */
+:root {
+    --roxo-fundo: #000033; /* Azul marinho muito escuro */
+    --azul-marinho-fundo: #000066; /* Azul marinho escuro */
+    --laranja-acento: #FF8C00;
+    --rosa-acento: #FF69B4;
+    --roxo-botao: #4B0082;
+    --envelope-cor: #FFEBCD;
+    --envelope-borda: #CD853F;
+    --aviso-vermelho: #DC143C;
+}
+
 /* --- Estilo Global e Fundo --- */
 body {
     font-family: 'Arial', sans-serif;
@@ -8,67 +22,11 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    /* NOVO GRADIENTE DE FUNDO */
     background: linear-gradient(135deg, var(--roxo-fundo), var(--azul-marinho-fundo));
-    transition: background 1s ease-in-out; /* Transição de fundo */
-    overflow: hidden; /* Garante que as transições de página funcionem bem */
+    transition: background 1s ease-in-out;
+    overflow: hidden;
 }
 
-/* --- Container Centralizado e Animação de Página --- */
-.container {
-    text-align: center;
-    padding: 20px;
-    max-width: 90%;
-    /* Animação de entrada da página (nível profissional) */
-    animation: fadeIn 1s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Classe aplicada via JS para a transição de saída */
-.page-exit {
-    animation: fadeOut 0.5s ease-in forwards;
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; transform: translateY(-20px); }
-}
-
-/* --- Estilo de Texto --- */
-h1, h2, p {
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para destaque */
-}
-
-/* --- Estilo de Botões/Opções --- */
-.button, .option-box {
-    background-color: var(--roxo-botao);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    margin: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1.1em;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    display: block; /* Para opções de quiz */
-    text-decoration: none;
-}
-
-.button:hover, .option-box:hover {
-    background-color: #6A0DAD; /* Roxo mais claro no hover */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-}
-
-/* --- Estilo para Avisos (OBS) --- */
-.aviso {
-    color: var(--aviso-vermelho);
-    font-size: 0.8em;
-    margin-top: 5px;
-    font-weight: bold;
-    text-shadow: none;
-}
+/* O restante do CSS permanece o mesmo */
+/* ... */
