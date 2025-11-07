@@ -1,24 +1,32 @@
 /* style.css */
 
-/* ... (Código anterior) ... */
-
-/* Estilo de Botões/Opções (Ajuste a transição para incluir o left/top) */
-.button, .option-box {
-    /* ... (Estilos anteriores) ... */
-    transition: all 0.3s ease, left 0.5s ease-out, top 0.5s ease-out; /* Adicionado left e top para movimento suave */
-}
+/* ... (O restante do seu CSS, incluindo o container#quiz-final de min-height) ... */
 
 /* ------------------------------------- */
 /* --- PÁGINA 6: BOTÃO FUGITIVO --- */
 /* ------------------------------------- */
 
-/* Container deve ser relativo para o botão absoluto fugir dentro dele */
+/* O container precisa ser 'position: relative' para que o botão 'absolute' se mova dentro dele */
 .container#quiz-final {
     position: relative; 
-    min-height: 400px; /* Garante espaço para o botão se mover */
+    min-height: 400px; /* Garante espaço suficiente para o botão se movimentar */
+    display: block; /* Garante que o container use a largura total */
 }
 
 /* Estilo do botão fugitivo */
-#btn-davi {
-    transition: all 0.5s ease-out; /* Suaviza a transição de fuga */
+#btn-davi.fugitive-button {
+    /* Torna o botão livre para ser posicionado */
+    position: absolute; 
+    /* Adiciona transição para que o movimento seja suave (não um 'teletransporte') */
+    transition: all 0.5s ease-out; 
+    /* Garante que o botão fugitivo fique por cima de tudo */
+    z-index: 10; 
+}
+
+/* Garante que a opção IVYNA continue no fluxo normal */
+#btn-ivyna {
+    position: relative;
+    z-index: 5;
+    /* Ajuste o 'margin-top' ou o 'display' se precisar que ele fique em uma linha própria */
+    margin-top: 150px; /* Adiciona um espaço para que o botão fugitivo possa se mover por cima */
 }
