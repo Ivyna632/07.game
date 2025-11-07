@@ -1,15 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quase lá 💘</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pag6 - Quem ama mais?</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="letter-box">
-    <h2>Você promete me amar pra sempre?</h2>
-    <button class="option" onclick="window.location.href='final.html'">Prometo 💍</button>
-  </div>
+<body class="fade-in">
+<main class="center-screen page" id="page6">
+<div class="container">
+<div class="question">Agora... quem que ama mais o outro nesse relacionamento?</div>
+<div class="choices">
+<button class="btn primary choice" id="btn-ivyna">ivyna</button>
+<div class="choice-col">
+<button class="btn primary choice" id="btn-davi">davi</button>
+<button class="btn secondary" id="btn-fugir">fugir</button>
+</div>
+</div>
+<div class="obs small red corner">aceita que dói menos e clica em ivyna vai</div>
+</div>
+</main>
+<audio id="bgm" loop src="music.mp3" preload="auto"></audio>
+<script src="script.js"></script>
 </body>
 </html>

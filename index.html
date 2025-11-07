@@ -1,25 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assopre a vela 🎂</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pag1 - Assopre a vela</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body class="fade-in">
-  <h1>Assopre a vela em 3...</h1>
-  <div class="candle">
-    <div class="flame"></div>
-    <div class="smoke"></div>
-    <div class="smoke"></div>
-    <div class="smoke"></div>
-  </div>
+<main class="center-screen page" id="page1">
+<div class="container">
+<h1 class="title">Assopre a vela</h1>
+<div class="scene">
+<div class="candle">
+<div class="wax"></div>
+<div class="flame"></div>
+<div class="smoke" aria-hidden="true"></div>
+</div>
+</div>
+<div class="counter" id="counter">3</div>
+</div>
+</main>
 
-  <script>
-    // Troca automática para a próxima página
-    setTimeout(() => {
-      window.location.href = "pag2.html";
-    }, 6000);
-  </script>
+
+<audio id="bgm" loop src="music.mp3" preload="auto"></audio>
+<script src="script.js"></script>
 </body>
 </html>

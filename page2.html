@@ -1,26 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A carta 💌</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pag2 - Carta</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>Feliz aniversário, meu amor!</h1>
-  <p class="hint">Aperte o coração para abrir a carta</p>
-
-  <div class="envelope" id="envelope">
-    <div class="flap"></div>
-    <div class="heart"></div>
-  </div>
-
-  <script>
-    const envelope = document.getElementById("envelope");
-    envelope.addEventListener("click", () => {
-      envelope.classList.add("open");
-      setTimeout(() => window.location.href = "pag3.html", 1500);
-    });
-  </script>
+<body class="fade-in">
+<main class="center-screen page" id="page2">
+<div class="container">
+<h1 class="title">Feliz aniversário, meu amor!</h1>
+<div class="envelope-wrap">
+<div class="envelope" id="envelope">
+<div class="flap"></div>
+<div class="seal">❤</div>
+</div>
+</div>
+<div class="letter-box hidden" id="letterBox">
+<div class="letter-text">Seu amor vem aqui... (substitua por sua mensagem)</div>
+<button class="btn primary" id="enterLetter">Entrar na carta</button>
+</div>
+</div>
+</main>
+<audio id="bgm" loop src="music.mp3" preload="auto"></audio>
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,175 +1,55 @@
-/* === ESTILO GERAL === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(#0a0a23, #1c1c4a);
-  color: #ffb3b3;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition: background 1s ease;
-}
-.page {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-.page.active {
-  opacity: 1;
-  z-index: 10;
-}
+/* Paleta: pôr do sol — roxo/violeta, azul marinho, laranja, rosa */
+.center-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem}
+.container{text-align:center;max-width:900px;width:100%;padding:2rem}
+.title{font-size:2rem;margin-bottom:1rem}
+.subtitle{font-size:1.2rem;margin-top:.5rem}
+.btn{padding:.9rem 1.6rem;border-radius:12px;border:0;font-weight:700;cursor:pointer;margin:.5rem;min-width:160px}
+.btn.primary{background:var(--violet);color:var(--white)}
+.btn.secondary{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.08)}
+.page{transition:opacity .6s ease,transform .6s ease}
+.fade-in{animation:pageIn .6s ease both}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.small{font-size:.85rem}
+.red{color:#ff4b4b}
+.corner{position:absolute;right:12px;bottom:12px}
+.obs{margin-top:.3rem}
 
-/* === PAGINA 1 - VELA E FUMAÇA === */
-.candle {
-  position: relative;
-  width: 20px;
-  height: 100px;
-  background: #fff;
-  border-radius: 5px;
-  margin-top: 30px;
-}
-.flame {
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  width: 15px;
-  height: 25px;
-  margin-left: -7.5px;
-  background: radial-gradient(ellipse at center, #ffb347 0%, #ff7b00 80%);
-  border-radius: 50%;
-  animation: flicker 0.2s infinite alternate;
-}
-@keyframes flicker {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(1.1); opacity: 0.8; }
-}
 
-/* Fumaça com mais volume */
-.smoke {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  margin-left: -5px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 50%;
-  opacity: 0;
-  animation: smoke 6s ease-in-out infinite;
-  animation-delay: 3s;
-}
-.smoke:nth-child(3) { animation-delay: 3.5s; }
-.smoke:nth-child(4) { animation-delay: 4s; }
-@keyframes smoke {
-  0% { opacity: 0; transform: translateY(0) scale(1); }
-  20% { opacity: 0.8; }
-  60% { opacity: 0.5; transform: translateY(-50px) scale(1.5); }
-  100% { opacity: 0; transform: translateY(-100px) scale(2); }
-}
+/* Candle */
+.scene{display:flex;justify-content:center;margin:1.2rem 0}
+.candle{position:relative;width:60px;height:160px}
+.wax{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:28px;height:110px;background:linear-gradient(#fff,#ffe7d0);border-radius:6px}
+.flame{position:absolute;left:50%;transform:translateX(-50%);bottom:112px;width:18px;height:28px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 40% 40%, #fff5a8 0 20%, #ffd16a 21% 45%, #ff6b35 60%)}
+/* smoke: multiple layers for volumous effect */
+.smoke{position:absolute;left:50%;bottom:120px;width:200px;height:160px;transform:translateX(-50%);pointer-events:none}
+.smoke:before,.smoke:after{content:'';position:absolute;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.06);filter:blur(18px);border-radius:50%}
+.smoke:before{width:160px;height:60px;bottom:-10px;animation:smokeUp 5s linear infinite;opacity:.9}
+.smoke:after{width:120px;height:40px;bottom:10px;animation:smokeUp 6s linear infinite;opacity:.7}
+@keyframes smokeUp{0%{transform:translate(-50%,0) scale(.9);opacity:0}10%{opacity:.3}50%{transform:translate(-140%,-80px) scale(1.1);opacity:.2}100%{transform:translate(-260%,-200px) scale(1.3);opacity:0}}
 
-/* === PAGINA 2 - ENVELOPE E CORAÇÃO === */
-.envelope {
-  position: relative;
-  width: 220px;
-  height: 140px;
-  background: #8b5cf6;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.4s ease;
-}
-.envelope:hover { transform: scale(1.05); }
-.flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 70px;
-  background: #7c3aed;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transition: transform 0.6s ease;
-}
-.heart {
-  position: absolute;
-  top: 55px;
-  left: 50%;
-  width: 35px;
-  height: 35px;
-  margin-left: -17.5px;
-  background: red;
-  transform: rotate(45deg);
-  animation: pulse 1s infinite;
-}
-.heart::before, .heart::after {
-  content: '';
-  position: absolute;
-  width: 35px;
-  height: 35px;
-  background: red;
-  border-radius: 50%;
-}
-.heart::before { top: -17.5px; left: 0; }
-.heart::after { left: 17.5px; top: 0; }
-@keyframes pulse {
-  0% { transform: scale(1) rotate(45deg); }
-  50% { transform: scale(1.2) rotate(45deg); }
-  100% { transform: scale(1) rotate(45deg); }
-}
-.envelope.open .flap {
-  transform: rotateX(180deg);
-  transform-origin: top;
-}
 
-/* === PAGINA 3 - TEXTO DENTRO DA CARTA === */
-.letter-box {
-  background: #8b5cf6;
-  padding: 30px;
-  border-radius: 15px;
-  color: white;
-  max-width: 80%;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-}
-.next-btn {
-  margin-top: 20px;
-  background: #6a0dad;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-.next-btn:hover { transform: scale(1.05); }
+/* Envelope */
+.envelope-wrap{display:flex;justify-content:center}
+.envelope{width:220px;height:140px;background:var(--envelope);border-radius:8px;position:relative;box-shadow:0 10px 30px rgba(11,7,32,.6);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.envelope .flap{position:absolute;top:0;left:0;right:0;height:70px;background:linear-gradient(180deg,#ffdfe9,#f6d6e0);border-top-left-radius:8px;border-top-right-radius:8px;transform-origin:center top;transition:transform .45s ease}
+.envelope .seal{position:absolute;right:14px;bottom:12px;background:var(--pink);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.envelope.open .flap{transform:translateY(-70px) rotateX(30deg)}
+.envelope.move-up{transform:translateY(-40vh) scale(.7);transition:transform .8s cubic-bezier(.2,.9,.3,1)}
+.letter-box{margin-top:1rem}
+.hidden{display:none}
+.letter-box .letter-text{background:var(--envelope);color:#3a2140;padding:1rem;border-radius:12px;margin-bottom:1rem}
 
-/* === QUIZ BOTÕES E OBSERVAÇÕES === */
-.option {
-  background: #6a0dad;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 10px;
-  margin: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: transform 0.2s;
-}
-.option:hover { transform: scale(1.05); }
 
-.obs {
-  color: #ff4444;
-  font-size: 12px;
-  margin-top: 8px;
-}
+/* Heart pulse */
+.heart{font-size:4rem;margin-top:1rem}
+.pulse{animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+
+
+/* choices layout */
+.choices{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:center;margin-top:1rem}
+.choice-col{display:flex;flex-direction:column;align-items:center}
+
+
+/* responsive small */
+@media (max-width:520px){.container{padding:1rem}.title{font-size:1.4rem}.candle{width:48px;height:130px}}

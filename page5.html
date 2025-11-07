@@ -1,27 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz 💭</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pag5 - Pergunta 2</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="letter-box">
-    <h2>Você me ama?</h2>
-    <button class="option" onclick="window.location.href='pag6.html'">Sim 💜</button>
-    <button class="option impossible">Não 😅</button>
-    <p class="obs">Sujeito a violência emocional caso escolha errado 😈</p>
-  </div>
-
-  <script>
-    // Botão "Não" foge do clique
-    const impossible = document.querySelector('.impossible');
-    impossible.addEventListener('mouseover', () => {
-      impossible.style.position = 'absolute';
-      impossible.style.left = Math.random() * 80 + '%';
-      impossible.style.top = Math.random() * 80 + '%';
-    });
-  </script>
+<body class="fade-in">
+<main class="center-screen page" id="page5">
+<div class="container">
+<div class="question">E você, ama a sua namorada?</div>
+<div class="choices">
+<button class="btn primary choice">mais que tudo no mundo</button>
+<div class="choice-col">
+<button class="btn primary choice" id="choice-unknown">ainda não sei</button>
+<div class="obs small red">(sujeito a violência se essa opção for marcada)</div>
+</div>
+</div>
+</div>
+</main>
+<audio id="bgm" loop src="music.mp3" preload="auto"></audio>
+<script src="script.js"></script>
 </body>
 </html>
