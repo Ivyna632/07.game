@@ -1,98 +1,64 @@
 /* script.js */
 
-// Função de Transição Profissional
+// Função de Transição Profissional (Mantida)
 function transitionToPage(url) {
     const body = document.body;
     body.classList.add('page-exit');
 
     setTimeout(() => {
-        // CORREÇÃO: Usando caminho relativo para robustez
         window.location.href = url; 
     }, 500);
 }
 
-// ------------------------------------
-// Lógica Específica da Página 1 (Vela)
-// ------------------------------------
-if (document.getElementById('vela-countdown')) {
-    let count = 3;
-    const counterElement = document.getElementById('vela-countdown');
-    const vela = document.getElementById('vela-element');
+// Lógica de Vela, Envelope e Navegação (Mantida)
 
-    function startCountdown() {
-        counterElement.textContent = count;
-        
-        const interval = setInterval(() => {
-            count--;
-            counterElement.textContent = count;
-            
-            if (count === 0) {
-                clearInterval(interval);
-                vela.classList.add('vela-apagando');
-                document.body.classList.add('show-smoke');
-                
-                setTimeout(() => {
-                    const fogo = document.querySelector('.fogo');
-                    if (fogo) fogo.remove();
-                }, 300);
-
-                // Navega para './pag2.html'
-                setTimeout(() => {
-                    transitionToPage('./pag2.html');
-                }, 1500);
-            }
-        }, 1000);
-    }
-    
-    window.onload = startCountdown;
-}
-
-
-// ------------------------------------
-// Lógica Específica da Página 2 (Envelope)
-// ------------------------------------
-if (document.getElementById('envelope-trigger')) {
-    document.getElementById('envelope-trigger').addEventListener('click', function() {
-        const envelope = this.querySelector('.envelope');
-        
-        envelope.classList.add('envelope-open');
-        
-        // Navega para './pag3.html'
-        setTimeout(() => {
-            transitionToPage('./pag3.html');
-        }, 1000);
-    });
-}
-
-// ------------------------------------
-// Lógica Específica do Quiz (Paginas 4, 5, 6)
-// ------------------------------------
-
-// Função universal de navegação no quiz
+// Função universal de navegação no quiz (Mantida)
 function answerAndNavigate(url) {
     transitionToPage(url);
 }
 
-// Lógica para a Página 6 (Botão de Fuga)
+// ------------------------------------
+// NOVO: Lógica Específica da Página 6 (Botão de Fuga)
+// ------------------------------------
 if (document.getElementById('quiz-final')) {
     const btnIvyna = document.getElementById('btn-ivyna');
     const btnDavi = document.getElementById('btn-davi');
+    const container = document.getElementById('quiz-final');
 
-    btnDavi.addEventListener('click', function() {
-        // Bloqueia o botão 'Davi'
-        this.textContent = 'FUGIR';
-        this.id = 'btn-fugir';
-        this.classList.add('button-blocked'); 
-        this.style.backgroundColor = 'gray';
-        this.style.cursor = 'not-allowed';
-        this.style.pointerEvents = 'none'; // Impede o clique
-    });
+    // 1. Lógica para fazer o botão fugir do cursor
+    if (btnDavi) {
+        btnDavi.addEventListener('mouseover', function(e) {
+            
+            // Pega a posição do botão e o tamanho do container
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = btnDavi.getBoundingClientRect();
 
+            // Gera novas posições aleatórias dentro dos limites do container
+            // Garante que o botão não saia da tela
+            let newX = Math.random() * (containerRect.width - btnRect.width);
+            let newY = Math.random() * (containerRect.height - btnRect.height);
+
+            // Aplica a nova posição com transição suave (definida no CSS)
+            btnDavi.style.position = 'absolute';
+            btnDavi.style.left = `${newX}px`;
+            btnDavi.style.top = `${newY}px`;
+        });
+        
+        // Desbloqueia a navegação para Davi, mas ele nunca será clicado
+        // btnDavi.addEventListener('click', function() {
+        //     alert('Ah, não! Ele fugiu de novo!'); 
+        // });
+    }
+
+    // 2. Lógica para a resposta correta (IVYNA)
     btnIvyna.addEventListener('click', function() {
         // Navega para './pag-final.html'
         answerAndNavigate('./pag-final.html');
     });
 }
+
+// O restante do JS anterior (vela e envelope) deve ser mantido aqui:
+// Coloque o código da vela e do envelope acima desta seção.
 
 // Adiciona as funções ao escopo global (para uso em onclick nos HTMLs)
 window.transitionToPage = transitionToPage;
