@@ -35,9 +35,9 @@ if (document.getElementById('vela-countdown')) {
                     if (fogo) fogo.remove();
                 }, 300);
 
-                // CORREÇÃO AQUI: Chamando 'pagina2.html'
+                // CORREÇÃO: Navega para 'pag2.html'
                 setTimeout(() => {
-                    transitionToPage('pagina2.html');
+                    transitionToPage('pag2.html');
                 }, 1500);
             }
         }, 1000);
@@ -56,9 +56,9 @@ if (document.getElementById('envelope-trigger')) {
         
         envelope.classList.add('envelope-open');
         
-        // CORREÇÃO AQUI: Chamando 'pagina3.html'
+        // CORREÇÃO: Navega para 'pag3.html'
         setTimeout(() => {
-            transitionToPage('pagina3.html');
+            transitionToPage('pag3.html');
         }, 1000);
     });
 }
@@ -67,6 +67,7 @@ if (document.getElementById('envelope-trigger')) {
 // Lógica Específica do Quiz (Paginas 4, 5, 6)
 // ------------------------------------
 
+// Função universal de navegação no quiz
 function answerAndNavigate(url) {
     transitionToPage(url);
 }
@@ -77,8 +78,9 @@ if (document.getElementById('quiz-final')) {
     const btnDavi = document.getElementById('btn-davi');
 
     btnDavi.addEventListener('click', function() {
+        // Bloqueia o botão 'Davi'
         this.textContent = 'FUGIR';
-        this.id = 'btn-fugir'; // Muda o ID para aplicar o estilo de bloqueio
+        this.id = 'btn-fugir';
         this.classList.add('button-blocked'); 
         this.style.backgroundColor = 'gray';
         this.style.cursor = 'not-allowed';
@@ -86,10 +88,11 @@ if (document.getElementById('quiz-final')) {
     });
 
     btnIvyna.addEventListener('click', function() {
-        // CORREÇÃO AQUI: Chamando 'pagina-final.html'
-        answerAndNavigate('pagina-final.html');
+        // CORREÇÃO: Navega para 'pag-final.html'
+        answerAndNavigate('pag-final.html');
     });
 }
 
+// Adiciona as funções ao escopo global (para uso em onclick nos HTMLs)
 window.transitionToPage = transitionToPage;
 window.answerAndNavigate = answerAndNavigate;
