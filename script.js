@@ -6,7 +6,7 @@ function transitionToPage(url) {
     body.classList.add('page-exit');
 
     setTimeout(() => {
-        // CORREÇÃO: Usando URL absoluta
+        // CORREÇÃO: Voltando para URL simples, confiando na tag <base>
         window.location.href = url; 
     }, 500);
 }
@@ -36,9 +36,9 @@ if (document.getElementById('vela-countdown')) {
                     if (fogo) fogo.remove();
                 }, 300);
 
-                // Navega para '/07.game/pag2.html'
+                // Navega para 'pag2.html'
                 setTimeout(() => {
-                    transitionToPage('/07.game/pag2.html');
+                    transitionToPage('pag2.html');
                 }, 1500);
             }
         }, 1000);
@@ -57,9 +57,9 @@ if (document.getElementById('envelope-trigger')) {
         
         envelope.classList.add('envelope-open');
         
-        // Navega para '/07.game/pag3.html'
+        // Navega para 'pag3.html'
         setTimeout(() => {
-            transitionToPage('/07.game/pag3.html');
+            transitionToPage('pag3.html');
         }, 1000);
     });
 }
@@ -82,7 +82,6 @@ if (document.getElementById('quiz-final')) {
     const container = document.getElementById('quiz-final');
 
     if (btnDavi) {
-        // Inicializa o botão para posicionamento absoluto (CSS)
         btnDavi.classList.add('fugitive-button');
 
         btnDavi.addEventListener('mouseover', function(e) {
@@ -90,15 +89,12 @@ if (document.getElementById('quiz-final')) {
             const containerRect = container.getBoundingClientRect();
             const btnRect = btnDavi.getBoundingClientRect();
 
-            // Área de segurança para evitar que o botão saia da tela
             const padding = 20; 
 
-            // Gera nova posição X e Y
             let newX = padding + Math.random() * (containerRect.width - btnRect.width - 2 * padding);
-            let minY = 100; // Posição mínima Y (abaixo do título)
+            let minY = 100; 
             let newY = minY + Math.random() * (containerRect.height - btnRect.height - minY - padding);
 
-            // Aplica a nova posição, fazendo-o fugir
             btnDavi.style.left = `${newX}px`;
             btnDavi.style.top = `${newY}px`;
         });
@@ -106,8 +102,8 @@ if (document.getElementById('quiz-final')) {
 
     // Lógica para a resposta correta (IVYNA)
     btnIvyna.addEventListener('click', function() {
-        // Navega para '/07.game/pag-final.html'
-        answerAndNavigate('/07.game/pag-final.html');
+        // Navega para 'pag-final.html'
+        answerAndNavigate('pag-final.html');
     });
 }
 
