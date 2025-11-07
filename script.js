@@ -81,7 +81,7 @@ if (document.getElementById('envelope-trigger')) {
 }
 
 // ------------------------------------
-// Lógica da Página 6 (Botão de Fuga)
+// Lógica da Página 6 (Botão de Fuga) - CORRIGIDA PARA CELULAR
 // ------------------------------------
 if (document.getElementById('quiz-final')) {
     const btnIvyna = document.getElementById('btn-ivyna');
@@ -96,12 +96,23 @@ if (document.getElementById('quiz-final')) {
             const containerRect = container.getBoundingClientRect();
             const btnRect = btnDavi.getBoundingClientRect();
 
-            const padding = 20; 
+            // Aumenta o padding para garantir que o botão não fique "preso" nas bordas pequenas
+            const padding = 30; 
+            
+            // Define o limite máximo de movimento para X e Y
+            const maxLeft = containerRect.width - btnRect.width - padding;
+            const maxTop = containerRect.height - btnRect.height - padding;
+            
+            // Posição mínima Y (para ficar abaixo do título)
+            const minY = 100;
 
-            let newX = padding + Math.random() * (containerRect.width - btnRect.width - 2 * padding);
-            let minY = 100; 
-            let newY = minY + Math.random() * (containerRect.height - btnRect.height - minY - padding);
+            // Calcula nova posição X (garantindo que não vá para fora da tela ou fique muito perto da borda)
+            let newX = padding + Math.random() * (Math.max(0, maxLeft - padding));
+            
+            // Calcula nova posição Y (garantindo que fique abaixo do título)
+            let newY = minY + Math.random() * (Math.max(0, maxTop - minY));
 
+            // Aplica a nova posição, fazendo-o fugir
             btnDavi.style.left = `${newX}px`;
             btnDavi.style.top = `${newY}px`;
         });
