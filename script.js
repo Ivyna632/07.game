@@ -6,8 +6,8 @@ function transitionToPage(url) {
     body.classList.add('page-exit');
 
     setTimeout(() => {
-        // CORREÇÃO DE URL: Usando o formato curto
-        window.location.href = url;
+        // CORREÇÃO: Usando caminho relativo para robustez
+        window.location.href = url; 
     }, 500);
 }
 
@@ -36,9 +36,9 @@ if (document.getElementById('vela-countdown')) {
                     if (fogo) fogo.remove();
                 }, 300);
 
-                // Navega para 'pag2.html'
+                // Navega para './pag2.html'
                 setTimeout(() => {
-                    transitionToPage('pag2.html');
+                    transitionToPage('./pag2.html');
                 }, 1500);
             }
         }, 1000);
@@ -57,9 +57,9 @@ if (document.getElementById('envelope-trigger')) {
         
         envelope.classList.add('envelope-open');
         
-        // Navega para 'pag3.html'
+        // Navega para './pag3.html'
         setTimeout(() => {
-            transitionToPage('pag3.html');
+            transitionToPage('./pag3.html');
         }, 1000);
     });
 }
@@ -89,8 +89,8 @@ if (document.getElementById('quiz-final')) {
     });
 
     btnIvyna.addEventListener('click', function() {
-        // Navega para 'pag-final.html'
-        answerAndNavigate('pag-final.html');
+        // Navega para './pag-final.html'
+        answerAndNavigate('./pag-final.html');
     });
 }
 
