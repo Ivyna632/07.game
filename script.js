@@ -9,7 +9,6 @@ function transitionToPage(filename) {
     body.classList.add('page-exit');
 
     // Constrói a URL de destino: [ORIGEM] + [CAMINHO BASE] + [NOME DO ARQUIVO]
-    // Ex: https://ivyna632.github.io/07.game/pag4.html
     let targetUrl = window.location.origin + GITHUB_BASE_PATH + filename;
     
     // Pequeno ajuste para garantir que não haja barras duplas (Ex: /07.game//pag4.html)
@@ -53,7 +52,7 @@ if (document.getElementById('vela-countdown')) {
                     if (fogo) fogo.remove();
                 }, 300);
 
-                // Navega para 'pag2.html' (URL simples)
+                // Navega para 'pag2.html'
                 setTimeout(() => {
                     transitionToPage('pag2.html');
                 }, 1500);
@@ -74,7 +73,7 @@ if (document.getElementById('envelope-trigger')) {
         
         envelope.classList.add('envelope-open');
         
-        // Navega para 'pag3.html' (URL simples)
+        // Navega para 'pag3.html'
         setTimeout(() => {
             transitionToPage('pag3.html');
         }, 1000);
@@ -110,7 +109,7 @@ if (document.getElementById('quiz-final')) {
 
     // Lógica para a resposta correta (IVYNA)
     btnIvyna.addEventListener('click', function() {
-        // Navega para 'pag-final.html' (URL simples)
+        // Navega para 'pag-final.html'
         answerAndNavigate('pag-final.html');
     });
 }

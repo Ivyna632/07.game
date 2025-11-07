@@ -2,8 +2,8 @@
 
 /* --- Variáveis de Cor (Tons de Azul Escuro para Fundo) --- */
 :root {
-    --roxo-fundo: #000033; /* Azul marinho muito escuro */
-    --azul-marinho-fundo: #000066; /* Azul marinho escuro */
+    --roxo-fundo: #000033;
+    --azul-marinho-fundo: #000066;
     --laranja-acento: #FF8C00;
     --rosa-acento: #FF69B4;
     --roxo-botao: #4B0082;
@@ -64,7 +64,7 @@ h1, h2, p {
     border-radius: 10px;
     cursor: pointer;
     font-size: 1.1em;
-    transition: all 0.3s ease, left 0.5s ease-out, top 0.5s ease-out; /* Adicionado left e top para movimento suave */
+    transition: all 0.3s ease, left 0.5s ease-out, top 0.5s ease-out;
     display: block; 
     text-decoration: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -207,21 +207,18 @@ h1, h2, p {
 /* --- PÁGINA 6: BOTÃO FUGITIVO --- */
 /* ----------------------------------- */
 
-/* O container precisa ser 'position: relative' para que o botão 'absolute' se mova dentro dele */
 .container#quiz-final {
     position: relative; 
     min-height: 400px; 
     display: block; 
 }
 
-/* Estilo do botão fugitivo */
 #btn-davi.fugitive-button {
     position: absolute; 
     transition: all 0.5s ease-out; 
     z-index: 10; 
 }
 
-/* Garante que a opção IVYNA continue no fluxo normal */
 #btn-ivyna {
     position: relative;
     z-index: 5;
