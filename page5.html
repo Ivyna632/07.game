@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+  <h2>E você, ama a sua namorada?</h2>
+  <button onclick="proximaPagina()">Mais que tudo no mundo 💖</button>
+  <button> Ainda não sei </button>
+  <p class="observacao">(sujeito a violência se essa opção for marcada 😅)</p>
+
+  <script>
+    const buttons = document.querySelectorAll("button");
+    buttons[1].addEventListener("click", () => alert("🩵 Resposta errada, tente de novo!"));
+    function proximaPagina() {
+      document.body.classList.add("fade-out");
+      setTimeout(() => window.location.href = "page6.html", 800);
+    }
+  </script>
+</body>
+</html>

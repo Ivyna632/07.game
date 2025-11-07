@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Assopre a Vela</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+  <h1>Assopre a vela em <span id="contador">3</span>...</h1>
+
+  <div class="vela">
+    <div class="fogo"></div>
+    <div class="fumaca"></div>
+    <div class="corpo"></div>
+  </div>
+
+  <script>
+    let contador = 3;
+    const span = document.getElementById("contador");
+    const fogo = document.querySelector(".fogo");
+    const fumaca = document.querySelector(".fumaca");
+
+    const intervalo = setInterval(() => {
+      contador--;
+      span.textContent = contador;
+
+      if (contador === 0) {
+        clearInterval(intervalo);
+        fogo.classList.add("apagando");
+        fumaca.classList.add("ativa");
+
+        setTimeout(() => {
+          document.body.classList.add("fade-out");
+          setTimeout(() => window.location.href = "page2.html", 1200);
+        }, 3500);
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

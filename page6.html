@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+  <h2>Agora… quem ama mais o outro nesse relacionamento?</h2>
+  <button id="ivyna">Ivyna 💘</button>
+  <button id="davi">Davi 😎</button>
+  <p class="observacao">Aceita que dói menos e clica em Ivyna vai 😏</p>
+
+  <script>
+    const daviBtn = document.getElementById("davi");
+    daviBtn.addEventListener("mouseover", () => {
+      daviBtn.style.position = "absolute";
+      daviBtn.style.top = Math.random() * 80 + "%";
+      daviBtn.style.left = Math.random() * 80 + "%";
+    });
+
+    document.getElementById("ivyna").addEventListener("click", () => {
+      document.body.classList.add("fade-out");
+      setTimeout(() => window.location.href = "fim.html", 800);
+    });
+  </script>
+</body>
+</html>

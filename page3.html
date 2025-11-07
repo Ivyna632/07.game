@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Surpresa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+  <h2>Espero que tenha gostado da cartinha 💖</h2>
+  <p>Vamos fazer um pequeno quiz agora?</p>
+  <button onclick="proximaPagina()">Começar</button>
+
+  <script>
+    function proximaPagina() {
+      document.body.classList.add("fade-out");
+      setTimeout(() => window.location.href = "page4.html", 800);
+    }
+  </script>
+</body>
+</html>

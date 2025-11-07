@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Aniversário</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+  <h1>Feliz aniversário, meu amor!</h1>
+  <p class="observacao">(Aperte o coração para abrir a carta 💌)</p>
+  <img src="envelope.png" id="envelope" alt="Envelope com selo de coração" style="cursor:pointer;">
+  
+  <script>
+    document.getElementById("envelope").addEventListener("click", () => {
+      document.body.classList.add("fade-out");
+      setTimeout(() => window.location.href = "page3.html", 800);
+    });
+  </script>
+</body>
+</html>

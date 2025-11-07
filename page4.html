@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+  <h1>Vamos começar o quiz sobre o casal mais lindo do Brasil!</h1>
+  <h2>Você sabe que sua namorada ama muito você?</h2>
+  <button onclick="proximaPagina()">Sim, óbvio 💕</button>
+  <button onclick="proximaPagina()">Não (se manque 😠)</button>
+
+  <script>
+    function proximaPagina() {
+      document.body.classList.add("fade-out");
+      setTimeout(() => window.location.href = "page5.html", 800);
+    }
+  </script>
+</body>
+</html>
